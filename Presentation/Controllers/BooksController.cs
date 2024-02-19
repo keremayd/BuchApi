@@ -1,3 +1,4 @@
+using Entities.DataTransferObjects;
 using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
@@ -45,7 +46,7 @@ public class BooksController : ControllerBase
     }
 
     [HttpPut("{id:int}")]
-    public IActionResult UpdateBook([FromRoute(Name = "id")] int id, [FromBody] Book book)
+    public IActionResult UpdateBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate book)
     {
         if (book is null)
         {
@@ -63,19 +64,20 @@ public class BooksController : ControllerBase
         return NoContent();
     }
 
-    [HttpPatch("{id:int}")]
-    public IActionResult PartiallyUpdateBook([FromRoute(Name = "id")] int id,
-        [FromBody] JsonPatchDocument<Book> bookPatch)
-    {
-        var entity = _manager.BookService.GetBookById(id, true);
-
-        if (entity is null)
-        {
-            return NotFound();
-        }
-
-        bookPatch.ApplyTo(entity);
-        _manager.BookService.UpdateBook(id, entity, true);
-        return NoContent();
-    }
+    // TODO Partially hali yapılacak
+    // [HttpPatch("{id:int}")]
+    // public IActionResult PartiallyUpdateBook([FromRoute(Name = "id")] int id,
+    //     [FromBody] JsonPatchDocument<Book> bookPatch)
+    // {
+    //     var entity = _manager.BookService.GetBookById(id, true);
+    //
+    //     if (entity is null)
+    //     {
+    //         return NotFound();
+    //     }
+    //
+    //     bookPatch.ApplyTo(entity);
+    //     _manager.BookService.UpdateBook(id, new BookDtoForUpdate(entity.Id, entity.Title, entity.Price), true);
+    //     return NoContent();
+    // }
 }

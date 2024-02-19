@@ -1,3 +1,5 @@
+using AutoMapper;
+using Entities.DataTransferObjects;
 using Entities.Exceptions;
 using Entities.Models;
 using Repositories.Contracts;
@@ -9,11 +11,13 @@ public class BookManager : IBookService
 {
     private readonly IRepositoryManager _manager;
     private readonly ILoggerService _logger;
+    private readonly IMapper _mapper;
 
-    public BookManager(IRepositoryManager manager, ILoggerService logger)
+    public BookManager(IRepositoryManager manager, ILoggerService logger, IMapper mapper)
     {
         _manager = manager;
         _logger = logger;
+        _mapper = mapper;
     }
 
     public IEnumerable<Book> GetAllBooks(bool trackChanges)
@@ -39,21 +43,22 @@ public class BookManager : IBookService
         return book;
     }
 
-    public void UpdateBook(int id, Book book, bool trackChanges)
+    public void UpdateBook(int id, BookDtoForUpdate request, bool trackChanges)
     {
         var entity = _manager.Book.GetBookById(id, trackChanges);
+        _manager.Book.DetachEntity(entity);
         if (entity is null)
         {
             throw new BookNotFoundException(id);
         }
 
-        if (book is null)
+        if (request is null)
         {
-            throw new ArgumentNullException(nameof(book));
+            throw new ArgumentNullException(nameof(request));
         }
-
-        entity.Title = book.Title;
-        entity.Price = book.Price;
+        
+        // Mapping
+        entity = _mapper.Map<Book>(request);
         
         //_manager.Book.Update(entity);
         _manager.Book.UpdateBook(entity);

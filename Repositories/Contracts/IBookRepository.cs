@@ -9,4 +9,5 @@ public interface IBookRepository: IRepositoryBase<Book>
     void CreateBook(Book book);
     void UpdateBook(Book book);
     void DeleteBook(Book book);
+    void DetachEntity<T>(T entity) where T : class;
 }
