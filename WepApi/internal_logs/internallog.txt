@@ -1,0 +1,31 @@
+2024-02-19 13:39:39.9249 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-02-19 13:39:39.9718 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-19 13:39:39.9952 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\kerem.aydın\RiderProjects\BTK\WepApi\nlog.config
+2024-02-19 13:39:40.0233 Info Configuration initialized.
+2024-02-19 13:42:46.3215 Info Configuration file change detected! Reloading in 1000ms...
+2024-02-19 13:42:47.3473 Info Reloading configuration...
+2024-02-19 13:42:47.3473 Info Loading NLog config from XML file: C:\Users\kerem.aydın\RiderProjects\BTK\WepApi\nlog.config
+2024-02-19 13:42:47.3718 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-02-19 13:42:47.3806 Info Closing old configuration.
+2024-02-19 13:42:47.4275 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\kerem.aydın\RiderProjects\BTK\WepApi\nlog.config
+2024-02-19 13:42:47.4275 Info Configuration initialized.
+2024-02-19 13:57:18.1421 Info AppDomain Shutting down. LogFactory closing...
+2024-02-19 13:57:18.2465 Info LogFactory has been closed.
+2024-02-19 15:02:34.2420 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-02-19 15:02:34.2773 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-19 15:02:34.2984 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\kerem.aydın\RiderProjects\BTK\WepApi\nlog.config
+2024-02-19 15:02:34.3244 Info Configuration initialized.
+2024-02-19 15:04:28.1366 Info AppDomain Shutting down. LogFactory closing...
+2024-02-19 15:04:28.1568 Info LogFactory has been closed.
+2024-02-19 15:05:02.8502 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-02-19 15:05:02.8829 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-19 15:05:02.9062 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\kerem.aydın\RiderProjects\BTK\WepApi\nlog.config
+2024-02-19 15:05:02.9314 Info Configuration initialized.
+2024-02-19 15:05:29.4387 Info AppDomain Shutting down. LogFactory closing...
+2024-02-19 15:05:29.4690 Info LogFactory has been closed.
+2024-02-19 15:53:10.9816 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-02-19 15:53:11.0260 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-19 15:53:11.0492 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\kerem.aydın\RiderProjects\BTK\WepApi\nlog.config
+2024-02-19 15:53:11.0765 Info Configuration initialized.
+2024-02-19 15:53:55.5953 Info AppDomain Shutting down. LogFactory closing...
+2024-02-19 15:53:55.6277 Info LogFactory has been closed.
