@@ -4,6 +4,7 @@ using Entities.Exceptions;
 using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
+using Services.DataTransferObjects.Response;
 
 namespace Services;
 
@@ -20,9 +21,10 @@ public class BookManager : IBookService
         _mapper = mapper;
     }
 
-    public IEnumerable<Book> GetAllBooks(bool trackChanges)
+    public IEnumerable<BookDtoResponse> GetAllBooks(bool trackChanges)
     {
-        return _manager.Book.GetAllBooks(trackChanges);
+        var books = _manager.Book.GetAllBooks(trackChanges);
+        return _mapper.Map<IEnumerable<BookDtoResponse>>(books);
     }
 
     public Book GetBookById(int id, bool trackChanges)

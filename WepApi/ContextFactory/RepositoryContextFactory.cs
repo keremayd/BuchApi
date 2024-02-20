@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Repositories.EFCore;
 
-namespace WepApi.ContextFactory
+namespace WebApi.ContextFactory
 {
     public class RepositoryContextFactory : IDesignTimeDbContextFactory<RepositoryContext>
     {
