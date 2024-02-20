@@ -4,7 +4,7 @@ using Entities.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Repositories.Contracts;
 
-namespace WepApi.Extensions;
+namespace WebApi.Extensions;
 
 public static class ExceptionMiddlewareExtensions
 {

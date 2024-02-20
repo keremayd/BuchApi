@@ -4,7 +4,7 @@ using Repositories.EFCore;
 using Services;
 using Services.Contracts;
 
-namespace WepApi.Extensions;
+namespace WebApi.Extensions;
 
 public static class ServicesExtensions
 {

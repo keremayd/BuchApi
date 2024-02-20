@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog;
 using Repositories.Contracts;
 using Repositories.EFCore;
-using WepApi.Extensions;
+using WebApi.Extensions;
 using ILogger = NLog.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +10,16 @@ LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nl
 
 // Add services to the container.
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers()
+builder.Services.AddControllers(config =>
+    {
+        // İçerik pazarlığına açıyoruz
+        config.RespectBrowserAcceptHeader = true;
+        // İstemediğimiz tipte pazarlık isteği gelirse ona 406 Not Acceptable olacağın ayarlıyoruz
+        config.ReturnHttpNotAcceptable = true;
+    })
+    .AddCustomCsvFormatter()
+    // Artık xml formatında da çıkış veriyor olacağız
+    .AddXmlDataContractSerializerFormatters()
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson();
 
