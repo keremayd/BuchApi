@@ -1740,6 +1740,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.JsonPatch": "7.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.0",
           "Services": "1.0.0"
         },
         "compile": {
