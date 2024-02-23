@@ -27,7 +27,7 @@ public class BookManager : IBookService
         return _mapper.Map<IEnumerable<BookDtoResponse>>(books);
     }
 
-    public Book GetBookById(int id, bool trackChanges)
+    public BookDtoResponse GetBookById(int id, bool trackChanges)
     {
         var book = _manager.Book.GetBookById(id, trackChanges);
         if (book is null)
@@ -35,14 +35,15 @@ public class BookManager : IBookService
             throw new BookNotFoundException(id);
         }
 
-        return book;
+        return _mapper.Map<BookDtoResponse>(book);
     }
 
-    public Book CreateBook(Book book)
+    public BookDtoResponse CreateBook(BookDtoForInsertion bookDto)
     {
-        _manager.Book.CreateBook(book);
+        var entity = _mapper.Map<Book>(bookDto);
+        _manager.Book.CreateBook(entity);
         _manager.Save();
-        return book;
+        return _mapper.Map<BookDtoResponse>(entity);
     }
 
     public void UpdateBook(int id, BookDtoForUpdate request, bool trackChanges)

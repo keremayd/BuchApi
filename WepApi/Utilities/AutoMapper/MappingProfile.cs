@@ -9,7 +9,9 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        //Soldakinden sağdakine geçişi ifade eder.
         CreateMap<BookDtoForUpdate, Book>();
-        CreateMap<Book, BookDtoResponse>();
+        CreateMap<Book, BookDtoResponse>().ReverseMap();
+        CreateMap<BookDtoForInsertion, Book>();
     }
 }

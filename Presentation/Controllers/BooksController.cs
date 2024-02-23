@@ -3,6 +3,7 @@ using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Services.Contracts;
 
 namespace Presentation.Controllers;
@@ -34,14 +35,19 @@ public class BooksController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateBook([FromBody] Book book)
+    public IActionResult CreateBook([FromBody] BookDtoForInsertion bookDto)
     {
-        if (book is null)
+        if (bookDto is null)
         {
             return BadRequest();
         }
 
-        _manager.BookService.CreateBook(book);
+        if (!ModelState.IsValid)
+        {
+            return UnprocessableEntity(ModelState);
+        }
+
+        var book = _manager.BookService.CreateBook(bookDto);
         return StatusCode(201, book);
     }
 
@@ -53,7 +59,12 @@ public class BooksController : ControllerBase
             throw new BookNotFoundException(id);
         }
 
-        _manager.BookService.UpdateBook(id, book, true);
+        if (!ModelState.IsValid)
+        {
+            return UnprocessableEntity(ModelState);
+        }
+
+        _manager.BookService.UpdateBook(id, book, false);
         return NoContent();
     }
 
