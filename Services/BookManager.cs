@@ -21,15 +21,15 @@ public class BookManager : IBookService
         _mapper = mapper;
     }
 
-    public IEnumerable<BookDtoResponse> GetAllBooks(bool trackChanges)
+    public async Task<IEnumerable<BookDtoResponse>> GetAllBooksAsync(bool trackChanges)
     {
-        var books = _manager.Book.GetAllBooks(trackChanges);
+        var books = await _manager.Book.GetAllBooksAsync(trackChanges);
         return _mapper.Map<IEnumerable<BookDtoResponse>>(books);
     }
 
-    public BookDtoResponse GetBookById(int id, bool trackChanges)
+    public async Task<BookDtoResponse> GetBookByIdAsync(int id, bool trackChanges)
     {
-        var book = _manager.Book.GetBookById(id, trackChanges);
+        var book = await _manager.Book.GetBookByIdAsync(id, trackChanges);
         if (book is null)
         {
             throw new BookNotFoundException(id);
@@ -38,17 +38,17 @@ public class BookManager : IBookService
         return _mapper.Map<BookDtoResponse>(book);
     }
 
-    public BookDtoResponse CreateBook(BookDtoForInsertion bookDto)
+    public async Task<BookDtoResponse> CreateBookAsync(BookDtoForInsertion bookDto)
     {
         var entity = _mapper.Map<Book>(bookDto);
         _manager.Book.CreateBook(entity);
-        _manager.Save();
+        await _manager.SaveAsync();
         return _mapper.Map<BookDtoResponse>(entity);
     }
 
-    public void UpdateBook(int id, BookDtoForUpdate request, bool trackChanges)
+    public async Task UpdateBookAsync(int id, BookDtoForUpdate request, bool trackChanges)
     {
-        var entity = _manager.Book.GetBookById(id, trackChanges);
+        var entity = await _manager.Book.GetBookByIdAsync(id, trackChanges);
         _manager.Book.DetachEntity(entity);
         if (entity is null)
         {
@@ -65,16 +65,17 @@ public class BookManager : IBookService
         
         //_manager.Book.Update(entity);
         _manager.Book.UpdateBook(entity);
-        _manager.Save();
+        await _manager.SaveAsync();
     }
 
-    public void DeleteBook(int id, bool trackChanges)
+    public async Task DeleteBookAsync(int id, bool trackChanges)
     {
-        var entity = _manager.Book.GetBookById(id, trackChanges);
+        var entity = await _manager.Book.GetBookByIdAsync(id, trackChanges);
         if (entity is null)
         {
             throw new BookNotFoundException(id);
         }
         _manager.Book.DeleteBook(entity);
+        await _manager.SaveAsync();
     }
 }
