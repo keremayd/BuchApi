@@ -10,7 +10,7 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
     }
 
-    public IQueryable<Book> GetAllBooks(bool trackChanges) => FindAll(trackChanges);
+    public async Task<IEnumerable<Book>> GetAllBooksAsync(bool trackChanges) => await FindAll(trackChanges).ToListAsync();
     
     public void DetachEntity<T>(T entity) where T : class
     {
@@ -21,9 +21,9 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
         }
     }
 
-    public Book? GetBookById(int id, bool trackChanges) =>
-        FindByCondition(b => b.Id == id, trackChanges)
-            .SingleOrDefault(b => b.Id == id);
+    public async Task<Book?> GetBookByIdAsync(int id, bool trackChanges) => 
+        await FindByCondition(b => b.Id == id, trackChanges)
+            .SingleOrDefaultAsync(b => b.Id == id);
 
     public void CreateBook(Book book) => Create(book);
 
